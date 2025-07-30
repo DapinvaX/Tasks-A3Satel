@@ -15,6 +15,7 @@ import { CreateTareaDto } from './dto/create-tarea.dto';
 import { UpdateTareaDto } from './dto/update-tarea.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
+
 @Controller('tareas')
 @UseGuards(JwtAuthGuard)
 export class TareasController {
