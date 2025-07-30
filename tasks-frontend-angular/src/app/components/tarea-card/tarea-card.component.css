@@ -1,0 +1,565 @@
+/* Estilos específicos del componente tarea-card */
+.tarea-card {
+  background: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.08), 0 0 0 0 rgba(158, 158, 158, 0) !important;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: block !important;
+}
+
+.tarea-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.12), 0 0 15px 3px rgba(158, 158, 158, 0.4) !important;
+}
+
+.tarea-card.completada {
+  opacity: 0.85;
+  border-color: #4caf50 !important;
+  border-width: 3px !important;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25), 0 2px 6px rgba(76, 175, 80, 0.15), 0 0 10px 2px rgba(76, 175, 80, 0.3) !important;
+}
+
+.tarea-card.completada:hover {
+  opacity: 1;
+  border-color: #66bb6a !important;
+  border-width: 3px !important;
+  box-shadow: 0 8px 20px rgba(102, 187, 106, 0.35), 0 4px 10px rgba(102, 187, 106, 0.25), 0 0 20px 5px rgba(102, 187, 106, 0.5) !important;
+  transform: translateY(-3px);
+}
+
+/* ESTILOS ESPECÍFICOS PARA MODO CLARO */
+/* Asegurar que las tareas completadas mantengan el borde verde en modo claro */
+[data-theme="light"] .tarea-card.completada,
+[data-theme="light"] mat-card.tarea-card.completada,
+[data-theme="light"] .mat-mdc-card.tarea-card.completada,
+[data-theme="light"] .tarea-card.mat-mdc-card.completada,
+[data-theme="light"] app-tarea-card mat-card.completada,
+[data-theme="light"] app-tarea-card .mat-mdc-card.completada {
+  border-color: #4caf50 !important;
+  border-width: 3px !important;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25), 0 2px 6px rgba(76, 175, 80, 0.15), 0 0 10px 2px rgba(76, 175, 80, 0.3) !important;
+}
+
+[data-theme="light"] .tarea-card.completada:hover,
+[data-theme="light"] mat-card.tarea-card.completada:hover,
+[data-theme="light"] .mat-mdc-card.tarea-card.completada:hover,
+[data-theme="light"] .tarea-card.mat-mdc-card.completada:hover,
+[data-theme="light"] app-tarea-card mat-card.completada:hover,
+[data-theme="light"] app-tarea-card .mat-mdc-card.completada:hover {
+  border-color: #66bb6a !important;
+  border-width: 3px !important;
+  box-shadow: 0 8px 20px rgba(102, 187, 106, 0.35), 0 4px 10px rgba(102, 187, 106, 0.25), 0 0 20px 5px rgba(102, 187, 106, 0.5) !important;
+  transform: translateY(-3px);
+}
+
+/* Chip de estado debajo del título */
+.status-chip-container {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Header simplificado */
+.header-view-mode {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.task-title {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.header-edit-mode {
+  width: 100%;
+}
+
+.edit-title-field {
+  width: 100%;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.descripcion {
+  color: var(--text-secondary);
+  margin: 1rem 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.fechas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+[data-theme="dark"] .fechas-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fecha-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.fecha-item mat-icon {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.card-actions-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .card-actions-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.action-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* Eliminar efecto de círculo (ripple) en botones */
+.action-button .mat-mdc-button-ripple,
+.action-button .mat-ripple,
+.action-button .mat-mdc-button-persistent-ripple {
+  display: none !important;
+}
+
+.action-button .mdc-button__ripple {
+  display: none !important;
+}
+
+/* Estilos para botón de editar */
+
+
+.edit-button:hover {
+  background-color: rgba(25, 118, 210, 0.8) !important;
+}
+
+.edit-button:hover mat-icon {
+  color: #ffffff !important;
+}
+
+/* Estilos para botón de eliminar */
+.delete-button mat-icon {
+  color: #f44336 !important;
+}
+
+.delete-button:hover {
+  background-color: rgba(244, 67, 54, 0.8) !important;
+}
+
+.delete-button:hover mat-icon {
+  color: #ffffff !important;
+}
+
+.completar-checkbox {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+[data-theme="dark"] .completar-checkbox {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .completar-checkbox .mat-checkbox-label {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .completar-checkbox * {
+  color: #ffffff !important;
+}
+
+/* Chips de estado mejorados */
+.completada-chip {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.completada-chip * {
+  color: #ffffff !important;
+}
+
+.pendiente-chip {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 6px rgba(255, 152, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pendiente-chip * {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .completada-chip {
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%) !important;
+  box-shadow: 0 2px 6px rgba(102, 187, 106, 0.4);
+}
+
+[data-theme="dark"] .pendiente-chip {
+  background: linear-gradient(135deg, #ffb74d 0%, #ff9800 100%) !important;
+  box-shadow: 0 2px 6px rgba(255, 183, 77, 0.4);
+}
+
+/* Estilos para checkboxes */
+.mat-checkbox-frame, .mat-checkbox-background {
+  border-color: var(--text-primary) !important;
+  background: var(--card-background) !important;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+[data-theme="dark"] .mat-checkbox-frame, [data-theme="dark"] .mat-checkbox-background {
+  border-color: #fff !important;
+  background: #2d3748 !important;
+}
+
+.mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-checkmark {
+  background: #1976d2 !important;
+  color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+
+.action-button.edit-button mat-icon{
+  color: rgba(30, 120, 255, 0.8) !important;
+}
+
+.action-button.edit-button:hover mat-icon{
+  color: white !important;
+}
+
+/* Estilos para tema oscuro */
+[data-theme="dark"] .mat-checkbox-checked .mat-checkbox-background, [data-theme="dark"] .mat-checkbox-checkmark {
+  background: #53c94f !important;
+  color: #53c94f !important;
+  border-color: #53c94f !important;
+}
+
+.mat-checkbox-label {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .mat-checkbox-label {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .mat-checkbox-inner-container {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .mat-checkbox-label-content {
+  color: #ffffff !important;
+}
+
+/* Estilos específicos para tema oscuro - Mayor contraste */
+[data-theme="dark"] .tarea-card {
+  background: #2d3748 !important;
+  border: 2px solid #68737d !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2), 0 0 0 0 rgba(160, 174, 192, 0) !important;
+}
+
+[data-theme="dark"] .tarea-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 4px 10px rgba(0,0,0,0.3), 0 0 15px 3px rgba(160, 174, 192, 0.4) !important;
+}
+
+[data-theme="dark"] .tarea-card.completada {
+  border-color: #4caf50 !important;
+  border-width: 3px !important;
+  background: #2d3748 !important;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4), 0 2px 6px rgba(0,0,0,0.2), 0 0 12px 3px rgba(76, 175, 80, 0.5) !important;
+}
+
+[data-theme="dark"] .tarea-card.completada:hover {
+  box-shadow: 0 8px 20px rgba(102, 187, 106, 0.5), 0 4px 10px rgba(0,0,0,0.3), 0 0 25px 6px rgba(102, 187, 106, 0.7) !important;
+  border-color: #66bb6a !important;
+  border-width: 3px !important;
+  transform: translateY(-3px);
+  background: #2d3748 !important;
+}
+
+/* Mejorar contraste de texto en tema oscuro */
+[data-theme="dark"] .task-title {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .descripcion {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .fecha-item {
+  color: #cbd5e0;
+}
+
+[data-theme="dark"] .fecha-item mat-icon {
+  color: #cbd5e0;
+}
+
+/* Botones con mejor contraste en tema oscuro */
+[data-theme="dark"] .action-button {
+  background-color: transparent !important;
+  border: none !important;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .action-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos para botón de editar en tema oscuro */
+[data-theme="dark"] .edit-button {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .edit-button mat-icon {
+  color: #ef5350 !important;
+}
+
+[data-theme="dark"] .action-button.edit-button {
+  background-color: transparent !important;
+  border:(141, 146, 153, 0.8) !important;
+
+}
+
+[data-theme="dark"] .action-button.edit-button mat-icon {
+  color: rgba(30, 120, 255, 0.8) !important;
+}
+
+
+[data-theme="dark"] .edit-button:hover mat-icon {
+  color:#ffffff !important;
+}
+
+[data-theme="dark"] .action-button.edit-button:hover {
+  background-color: rgba(30, 120, 255, 0.8) !important;
+
+}
+
+
+[data-theme="dark"] .action-button:hover mat-button-ripple.edit-button {
+  background-color: rgba(30, 120, 255, 0.8) !important;
+  border-color: transparent !important;
+}
+
+/* Estilos para botón de eliminar en tema oscuro */
+[data-theme="dark"] .delete-button {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .delete-button mat-icon {
+  color: #ef5350 !important;
+}
+
+[data-theme="dark"] .delete-button:hover {
+  background-color: rgba(244, 67, 54, 0.8) !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .delete-button:hover mat-icon {
+  color: #ffffff !important;
+}
+
+/* FORZAR ESTILOS PARA TARJETAS - MÁXIMA ESPECIFICIDAD */
+[data-theme="dark"] mat-card.tarea-card,
+[data-theme="dark"] .mat-mdc-card.tarea-card,
+[data-theme="dark"] .tarea-card.mat-mdc-card,
+[data-theme="dark"] app-tarea-card mat-card,
+[data-theme="dark"] app-tarea-card .mat-mdc-card {
+  background: #2d3748 !important;
+  border: 2px solid #68737d !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2) !important;
+  border-radius: 12px !important;
+  display: block !important;
+  opacity: 1 !important;
+}
+
+/* FORZAR ESTILOS PARA TARJETAS COMPLETADAS - MÁXIMA ESPECIFICIDAD */
+[data-theme="dark"] mat-card.tarea-card.completada,
+[data-theme="dark"] .mat-mdc-card.tarea-card.completada,
+[data-theme="dark"] .tarea-card.mat-mdc-card.completada,
+[data-theme="dark"] app-tarea-card mat-card.completada,
+[data-theme="dark"] app-tarea-card .mat-mdc-card.completada {
+  border-color: #4caf50 !important;
+  border-width: 3px !important;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4), 0 2px 6px rgba(0,0,0,0.2), 0 0 12px 3px rgba(76, 175, 80, 0.5) !important;
+}
+
+[data-theme="dark"] mat-card.tarea-card.completada:hover,
+[data-theme="dark"] .mat-mdc-card.tarea-card.completada:hover,
+[data-theme="dark"] .tarea-card.mat-mdc-card.completada:hover,
+[data-theme="dark"] app-tarea-card mat-card.completada:hover,
+[data-theme="dark"] app-tarea-card .mat-mdc-card.completada:hover {
+  border-color: #66bb6a !important;
+  border-width: 3px !important;
+  box-shadow: 0 8px 20px rgba(102, 187, 106, 0.5), 0 4px 10px rgba(0,0,0,0.3), 0 0 25px 6px rgba(102, 187, 106, 0.7) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* FORZAR ESTILOS PARA TARJETAS NO COMPLETADAS - MÁXIMA ESPECIFICIDAD */
+/* Modo claro - tarjetas no completadas */
+mat-card.tarea-card:not(.completada),
+.mat-mdc-card.tarea-card:not(.completada),
+.tarea-card.mat-mdc-card:not(.completada),
+app-tarea-card mat-card:not(.completada),
+app-tarea-card .mat-mdc-card:not(.completada) {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.08), 0 0 8px 2px rgba(158, 158, 158, 0.2) !important;
+}
+
+mat-card.tarea-card:not(.completada):hover,
+.mat-mdc-card.tarea-card:not(.completada):hover,
+.tarea-card.mat-mdc-card:not(.completada):hover,
+app-tarea-card mat-card:not(.completada):hover,
+app-tarea-card .mat-mdc-card:not(.completada):hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.12), 0 0 15px 3px rgba(158, 158, 158, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Modo oscuro - tarjetas no completadas */
+[data-theme="dark"] mat-card.tarea-card:not(.completada),
+[data-theme="dark"] .mat-mdc-card.tarea-card:not(.completada),
+[data-theme="dark"] .tarea-card.mat-mdc-card:not(.completada),
+[data-theme="dark"] app-tarea-card mat-card:not(.completada),
+[data-theme="dark"] app-tarea-card .mat-mdc-card:not(.completada) {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2), 0 0 10px 2px rgba(160, 174, 192, 0.25) !important;
+}
+
+[data-theme="dark"] mat-card.tarea-card:not(.completada):hover,
+[data-theme="dark"] .mat-mdc-card.tarea-card:not(.completada):hover,
+[data-theme="dark"] .tarea-card.mat-mdc-card:not(.completada):hover,
+[data-theme="dark"] app-tarea-card mat-card:not(.completada):hover,
+[data-theme="dark"] app-tarea-card .mat-mdc-card:not(.completada):hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 4px 10px rgba(0,0,0,0.3), 0 0 18px 4px rgba(160, 174, 192, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tarea-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-view-mode {
+    align-items: flex-start;
+  }
+
+  .task-title {
+    font-size: 1.1rem !important;
+  }
+
+  .status-chip-container {
+    margin-top: 0.5rem;
+  }
+
+  .card-actions-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .fechas-container {
+    padding: 0.5rem;
+  }
+}
+
+/* Animaciones y efectos adicionales */
+.tarea-card {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* Efectos para tarjetas NO completadas (pendientes) */
+.tarea-card:not(.completada) {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.08), 0 0 8px 2px rgba(158, 158, 158, 0.2) !important;
+}
+
+.tarea-card:not(.completada):hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.12), 0 0 15px 3px rgba(158, 158, 158, 0.4) !important;
+}
+
+[data-theme="dark"] .tarea-card:not(.completada) {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2), 0 0 10px 2px rgba(160, 174, 192, 0.25) !important;
+}
+
+[data-theme="dark"] .tarea-card:not(.completada):hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 4px 10px rgba(0,0,0,0.3), 0 0 18px 4px rgba(160, 174, 192, 0.4) !important;
+}
+
+

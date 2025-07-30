@@ -1,0 +1,776 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Variables globales para temas claros y oscuros */
+:root {
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --card-background: #ffffff;
+  --card-border: #c1c7d0;
+  --card-shadow: rgba(0, 0, 0, 0.15);
+  --card-footer-bg: #e6e6e6e7;
+  --button-text: #1a1a1a;
+  --body-background: transparent;
+  --main-background: #ffffff;
+}
+
+[data-theme="dark"] {
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --card-background: #2d3748;
+  --card-border: #68737d;
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --card-footer-bg: #1a202c;
+  --button-text: #ffffff;
+  --body-background: transparent;
+  --main-background: #1a1a2e;
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--body-background);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Estilos globales para tema oscuro */
+[data-theme="dark"] {
+  background-color: var(--body-background) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] * {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5568 #2d3748;
+}
+
+[data-theme="dark"] *::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background-color: #4a5568;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
+  background-color: #68737d;
+}
+
+/* Estilos globales para Material Design en tema oscuro */
+[data-theme="dark"] .mat-mdc-card:not(.login-card):not(.forgot-password-card):not(.form-card):not(.register-card):not(.tarea-card) {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field-label,
+[data-theme="dark"] .mat-mdc-floating-label {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input,
+[data-theme="dark"] .mat-mdc-form-field textarea {
+  color: var(--text-primary) !important;
+  caret-color: var(--text-primary) !important;
+}
+
+/* Placeholders en tema oscuro */
+[data-theme="dark"] .mat-mdc-form-field input::placeholder,
+[data-theme="dark"] .mat-mdc-form-field textarea::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input::-webkit-input-placeholder,
+[data-theme="dark"] .mat-mdc-form-field textarea::-webkit-input-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input::-moz-placeholder,
+[data-theme="dark"] .mat-mdc-form-field textarea::-moz-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input:-ms-input-placeholder,
+[data-theme="dark"] .mat-mdc-form-field textarea:-ms-input-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+/* Outlines y bordes de los campos */
+[data-theme="dark"] .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-outline {
+  color: var(--card-border) !important;
+  border-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-outline-thick {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #ffffff !important;
+}
+
+/* Hint y error text */
+[data-theme="dark"] .mat-mdc-form-field .mat-mdc-form-field-hint {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field .mat-mdc-form-field-error {
+  color: #f44336 !important;
+}
+
+/* Iconos en campos de formulario */
+[data-theme="dark"] .mat-mdc-form-field mat-icon,
+[data-theme="dark"] .mat-mdc-form-field .mat-icon {
+  color: var(--text-secondary) !important;
+}
+
+/* Estilos para mat-select en tema oscuro */
+[data-theme="dark"] .mat-mdc-select {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-select-value {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-select-placeholder {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-select-arrow {
+  color: var(--text-secondary) !important;
+}
+
+/* Panel del dropdown en tema oscuro */
+[data-theme="dark"] .mat-mdc-select-panel {
+  background-color: #2d3748 !important;
+  border: 1px solid #68737d !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Opciones del dropdown en tema oscuro */
+[data-theme="dark"] .mat-mdc-option {
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .mat-mdc-option:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .mat-mdc-option.mdc-list-item--selected {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .mat-mdc-option.mat-mdc-option-active {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Texto de las opciones */
+[data-theme="dark"] .mat-mdc-option .mdc-list-item__primary-text {
+  color: var(--text-primary) !important;
+}
+
+/* Overlay y backdrop del dropdown en tema oscuro */
+[data-theme="dark"] .cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .cdk-overlay-container .mat-mdc-select-panel {
+  background-color: #2d3748 !important;
+  border: 1px solid #68737d !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Scrollbar del dropdown en tema oscuro */
+[data-theme="dark"] .mat-mdc-select-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] .mat-mdc-select-panel::-webkit-scrollbar-track {
+  background: #1a202c;
+}
+
+[data-theme="dark"] .mat-mdc-select-panel::-webkit-scrollbar-thumb {
+  background-color: #4a5568;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .mat-mdc-select-panel::-webkit-scrollbar-thumb:hover {
+  background-color: #68737d;
+}
+
+/* Estilos para mat-datepicker en tema oscuro */
+[data-theme="dark"] .mat-datepicker-content {
+  background-color: #2d3748 !important;
+  color: var(--text-primary) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid #68737d !important;
+}
+
+[data-theme="dark"] .mat-calendar {
+  background-color: #2d3748 !important;
+  color: var(--text-primary) !important;
+  min-height: 350px !important;
+  height: auto !important;
+}
+
+/* Header del calendario */
+[data-theme="dark"] .mat-calendar-header {
+  background-color: #1a202c !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid #68737d !important;
+}
+
+[data-theme="dark"] .mat-calendar-arrow {
+  fill: var(--text-primary) !important;
+}
+
+/* Botones de navegación del calendario */
+[data-theme="dark"] .mat-calendar-previous-button,
+[data-theme="dark"] .mat-calendar-next-button {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-calendar-previous-button:hover,
+[data-theme="dark"] .mat-calendar-next-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Selector de periodo (mes/año) */
+[data-theme="dark"] .mat-calendar-period-button {
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .mat-calendar-period-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Tabla del calendario */
+[data-theme="dark"] .mat-calendar-table {
+  color: var(--text-primary) !important;
+  height: auto !important;
+  min-height: 240px !important;
+}
+
+/* Headers de días de la semana con espaciado mejorado */
+.mat-calendar-table-header th {
+  padding-top: 12px !important;
+  margin-top: 8px !important;
+}
+
+[data-theme="dark"] .mat-calendar-table-header th {
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  padding-top: 12px !important;
+  margin-top: 8px !important;
+}
+
+/* Asegurar espaciado consistente en toda la tabla del calendario */
+.mat-calendar-table-header {
+  margin-top: 8px !important;
+}
+
+[data-theme="dark"] .mat-calendar-table-header {
+  margin-top: 8px !important;
+}
+
+/* Celdas de fechas */
+[data-theme="dark"] .mat-calendar-body-cell {
+  color: var(--text-primary) !important;
+  border-radius: 6px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  line-height: 36px !important;
+}
+
+[data-theme="dark"] .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Fecha seleccionada */
+[data-theme="dark"] .mat-calendar-body-selected {
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .mat-calendar-body-selected:hover {
+  background-color: #66bb6a !important;
+}
+
+/* Fecha de hoy */
+[data-theme="dark"] .mat-calendar-body-today {
+  border: 1px solid #68737d !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .mat-calendar-body-today.mat-calendar-body-selected {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+
+/* Fechas deshabilitadas */
+[data-theme="dark"] .mat-calendar-body-disabled {
+  color: #4a5568 !important;
+}
+
+/* Vista de año y mes */
+[data-theme="dark"] .mat-calendar-body-cell-content {
+  color: inherit !important;
+}
+
+/* Botones de acción del datepicker */
+[data-theme="dark"] .mat-datepicker-actions {
+  background-color: #1a202c !important;
+  border-top: 1px solid #68737d !important;
+  padding: 8px 16px !important;
+}
+
+[data-theme="dark"] .mat-datepicker-actions .mat-button {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-datepicker-actions .mat-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Overlay del datepicker en tema oscuro */
+[data-theme="dark"] .cdk-overlay-backdrop.mat-datepicker-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .cdk-overlay-container .mat-datepicker-content {
+  background-color: #2d3748 !important;
+  border: 1px solid #68737d !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  min-height: 380px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Input field del datepicker en tema oscuro */
+[data-theme="dark"] .mat-mdc-form-field .mat-datepicker-toggle {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field .mat-datepicker-toggle:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Toggle button del datepicker */
+[data-theme="dark"] .mat-datepicker-toggle-default-icon {
+  fill: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mat-datepicker-toggle:hover .mat-datepicker-toggle-default-icon {
+  fill: var(--text-primary) !important;
+}
+
+/* Texto del mes en el calendario (ej: JUL) */
+[data-theme="dark"] .mat-calendar-body-label {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Vista de meses cuando se selecciona un año */
+[data-theme="dark"] .mat-calendar-period-button-text {
+  color: var(--text-primary) !important;
+}
+
+/* Texto de los meses en vista anual */
+[data-theme="dark"] .mat-calendar-body-cell-preview {
+  color: var(--text-primary) !important;
+}
+
+/* Asegurar que todos los textos del calendario sean blancos */
+[data-theme="dark"] .mat-calendar * {
+  color: var(--text-primary) !important;
+}
+
+/* Texto específico para indicadores de mes/año */
+[data-theme="dark"] .mat-calendar-body-cell-content,
+[data-theme="dark"] .mat-calendar-body-label,
+[data-theme="dark"] .mat-calendar-period-button {
+  color: var(--text-primary) !important;
+}
+
+/* Títulos y textos globales */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] div {
+  color: var(--text-primary);
+}
+
+/* Estilos globales para navbar en tema oscuro */
+[data-theme="dark"] mat-toolbar,
+[data-theme="dark"] .mat-toolbar {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="dark"] app-navbar mat-toolbar,
+[data-theme="dark"] app-navbar .mat-toolbar {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%) !important;
+  color: #ffffff !important;
+}
+
+/* Iconos del navbar en tema oscuro */
+[data-theme="dark"] mat-toolbar mat-icon,
+[data-theme="dark"] mat-toolbar .mat-icon,
+[data-theme="dark"] app-navbar mat-icon,
+[data-theme="dark"] app-navbar .mat-icon {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Botones Material en tema oscuro */
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary:hover {
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary mat-icon,
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary .mat-icon {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary:hover mat-icon,
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary:hover .mat-icon {
+  color: #000000 !important;
+}
+
+/* Botones con color="primary" específicamente */
+[data-theme="dark"] button[color="primary"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] button[color="primary"]:hover {
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] button[color="primary"] mat-icon,
+[data-theme="dark"] button[color="primary"] .mat-icon {
+  color: #000000 !important;
+}
+
+/* Asegurar que el texto de los botones sea negro en modo oscuro */
+[data-theme="dark"] button[color="primary"] span,
+[data-theme="dark"] button[color="primary"] .mdc-button__label,
+[data-theme="dark"] button[color="primary"] .mat-button-wrapper {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] button[color="primary"]:hover span,
+[data-theme="dark"] button[color="primary"]:hover .mdc-button__label,
+[data-theme="dark"] button[color="primary"]:hover .mat-button-wrapper {
+  color: #000000 !important;
+}
+
+/* Botones Material raised con más especificidad */
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary span,
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary .mdc-button__label,
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary .mat-button-wrapper {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary:hover span,
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary:hover .mdc-button__label,
+[data-theme="dark"] .mat-mdc-raised-button.mat-primary:hover .mat-button-wrapper {
+  color: #000000 !important;
+}
+
+/* ===== SOMBRAS MEJORADAS PARA BOTONES ===== */
+
+/* Botones Material Design - Sombras en modo claro */
+.mat-mdc-raised-button {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+  transition: all 0.3s ease;
+}
+
+.mat-mdc-raised-button:hover {
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2), 0 5px 12px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1) !important;
+  transform: translateY(-2px);
+}
+
+.mat-mdc-button:not(.mat-mdc-raised-button) {
+  transition: all 0.3s ease;
+}
+
+.mat-mdc-button:not(.mat-mdc-raised-button):hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.08) !important;
+  transform: translateY(-1px);
+}
+
+/* Botones Material Design - Sombras en tema oscuro */
+[data-theme="dark"] .mat-mdc-raised-button {
+  box-shadow:
+    0 6px 16px rgba(255,255,255,0.1),
+    0 3px 8px rgba(255,255,255,0.05),
+    0 1px 3px rgba(255,255,255,0.03) !important;
+}
+
+[data-theme="dark"] .mat-mdc-raised-button:hover {
+  box-shadow:
+    0 10px 24px rgba(255,255,255,0.15),
+    0 5px 12px rgba(255,255,255,0.1),
+    0 2px 6px rgba(255,255,255,0.05) !important;
+}
+
+[data-theme="dark"] .mat-mdc-button:not(.mat-mdc-raised-button):hover {
+  box-shadow:
+    0 4px 12px rgba(255,255,255,0.08),
+    0 2px 6px rgba(255,255,255,0.05) !important;
+}
+
+/* ===== MATERIAL CARD HEADERS - TÍTULOS Y SUBTÍTULOS ===== */
+
+/* Estilos globales para todas las Material Cards - Transparentes por defecto */
+/* Excepto las de autenticación (solo login y forgot-password) y formularios que necesitan mantener su forma */
+.mat-mdc-card:not(.login-card):not(.forgot-password-card):not(.form-card):not(.register-card):not(.tarea-card) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Estilos globales para títulos y subtítulos de Material Card */
+.mat-mdc-card-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.mat-mdc-card-title {
+  text-align: center !important;
+  justify-self: center !important;
+  align-self: center !important;
+  width: 100% !important;
+  color: var(--text-primary) !important;
+  transition: color 0.3s ease !important;
+}
+
+.mat-mdc-card-subtitle {
+  text-align: center !important;
+  justify-self: center !important;
+  align-self: center !important;
+  width: 100% !important;
+  color: var(--text-secondary) !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Específico para tema oscuro */
+[data-theme="dark"] .mat-mdc-card:not(.login-card):not(.forgot-password-card):not(.form-card):not(.register-card):not(.tarea-card) {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .mat-mdc-card-header {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-card-title {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-card-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .mat-mdc-card-content {
+  color: var(--text-primary) !important;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA FORMULARIOS DE TAREAS ===== */
+/* Asegurar que los formularios de tareas mantengan su fondo */
+.form-card,
+.form-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="light"] .form-card,
+[data-theme="light"] .form-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="dark"] .form-card,
+[data-theme="dark"] .form-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 6px 16px rgba(255,255,255,0.1), 0 3px 8px rgba(255,255,255,0.05), 0 1px 3px rgba(255,255,255,0.03) !important;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA FORMULARIOS DE REGISTRO ===== */
+/* Asegurar que los formularios de registro mantengan su fondo */
+.register-card,
+.register-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="light"] .register-card,
+[data-theme="light"] .register-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="dark"] .register-card,
+[data-theme="dark"] .register-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 6px 16px rgba(255,255,255,0.1), 0 3px 8px rgba(255,255,255,0.05), 0 1px 3px rgba(255,255,255,0.03) !important;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA TARJETAS DE TAREAS ===== */
+/* Asegurar que las tarjetas de tareas mantengan su fondo y forma */
+.tarea-card,
+.tarea-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.08) !important;
+  border-radius: 12px !important;
+}
+
+[data-theme="light"] .tarea-card,
+[data-theme="light"] .tarea-card.mat-mdc-card {
+  background-color: var(--card-background) !important;
+  border: 2px solid var(--card-border) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="dark"] .tarea-card,
+[data-theme="dark"] .tarea-card.mat-mdc-card {
+  background-color: #2d3748 !important;
+  border: 2px solid #68737d !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2) !important;
+}
+
+/* Ajustar altura del calendario para que quepan todas las fechas */
+.mat-calendar {
+  min-height: 350px !important;
+  height: auto !important;
+}
+
+[data-theme="dark"] .mat-calendar {
+  background-color: #2d3748 !important;
+  color: var(--text-primary) !important;
+  min-height: 350px !important;
+  height: auto !important;
+}
+
+/* Ajustar altura del contenido del calendario */
+.mat-calendar-content {
+  min-height: 280px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+[data-theme="dark"] .mat-calendar-content {
+  min-height: 280px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Asegurar que la tabla tenga suficiente espacio */
+.mat-calendar-table {
+  height: auto !important;
+  min-height: 240px !important;
+}
+
+[data-theme="dark"] .mat-calendar-table {
+  color: var(--text-primary) !important;
+  height: auto !important;
+  min-height: 240px !important;
+}
+
+/* Ajustar altura de las celdas para mejor distribución */
+.mat-calendar-body-cell {
+  height: 36px !important;
+  min-height: 36px !important;
+  line-height: 36px !important;
+}
+
+[data-theme="dark"] .mat-calendar-body-cell {
+  color: var(--text-primary) !important;
+  border-radius: 6px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  line-height: 36px !important;
+}
+
+/* Asegurar espaciado vertical entre filas */
+.mat-calendar-body tr {
+  height: 40px !important;
+}
+
+/* Ajustar el contenedor principal del datepicker */
+.mat-datepicker-content {
+  min-height: 380px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+[data-theme="dark"] .mat-datepicker-content {
+  background-color: #2d3748 !important;
+  color: var(--text-primary) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid #68737d !important;
+  min-height: 380px !important;
+  height: auto !important;
+  overflow: visible !important;
+}

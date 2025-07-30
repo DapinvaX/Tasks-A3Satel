@@ -1,0 +1,58 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Iniciar Sesión</mat-card-title>
+      <mat-card-subtitle>Accede a tu cuenta de tareas</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email o Nombre de Usuario</mat-label>
+          <input matInput
+                 type="text"
+                 formControlName="emailOrUsername">
+          <mat-error *ngIf="loginForm.get('emailOrUsername')?.hasError('required')">
+            El email o nombre de usuario es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput
+                 [type]="hidePassword ? 'password' : 'text'"
+                 formControlName="password">
+          <button mat-icon-button
+                  matSuffix
+                  (click)="hidePassword = !hidePassword"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hidePassword"
+                  type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            La contraseña es requerida
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                class="full-width login-button"
+                [disabled]="loginForm.invalid || isLoading">
+          <span *ngIf="!isLoading">Iniciar Sesión</span>
+          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        </button>
+      </form>
+
+      <div class="forgot-password-link">
+        <a href="#" (click)="onForgotPassword($event)" class="link">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <div class="register-link">
+        <span>¿No tienes cuenta? </span>
+        <a routerLink="/register" class="link">Regístrate aquí</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

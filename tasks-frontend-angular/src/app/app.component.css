@@ -1,0 +1,36 @@
+/* Layout principal */
+.main-content {
+  min-height: calc(100vh - 64px); /* Altura de la viewport menos la altura del navbar */
+  padding: 20px;
+  background-color: var(--main-background);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Tema oscuro */
+[data-theme="dark"] .main-content {
+  background-color: var(--main-background);
+  color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 10px;
+    min-height: calc(100vh - 56px); /* Ajuste para altura de navbar móvil */
+  }
+}
+
+/* Animaciones suaves */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--body-background);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

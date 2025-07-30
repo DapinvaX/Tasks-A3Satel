@@ -1,0 +1,21 @@
+<div class="homepage-container">
+  <!-- Header con título y botón de nueva tarea -->
+  <div class="header-section">
+    <div class="title-section">
+      <h1>Mis Tareas</h1>
+      <p class="subtitle">Gestiona tus tareas de manera eficiente</p>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="nueva-tarea-btn"
+      routerLink="/nueva-tarea">
+      <mat-icon>add</mat-icon>
+      Nueva Tarea
+    </button>
+  </div>
+
+  <!-- Lista de tareas -->
+  <app-lista-tareas></app-lista-tareas>
+</div>

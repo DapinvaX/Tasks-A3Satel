@@ -1,0 +1,120 @@
+.homepage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: calc(100vh - 120px);
+  background-color: var(--body-background);
+  transition: background-color 0.3s ease;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.title-section h1 {
+  margin: 0 0 8px 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nueva-tarea-btn {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.nueva-tarea-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2), 0 5px 12px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.nueva-tarea-btn mat-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homepage-container {
+    padding: 16px;
+  }
+
+  .header-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .title-section h1 {
+    font-size: 2rem;
+  }
+
+  .nueva-tarea-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Tema oscuro - Solo para elementos específicos que necesitan override */
+[data-theme="dark"] .nueva-tarea-btn {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .nueva-tarea-btn:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .nueva-tarea-btn mat-icon {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .nueva-tarea-btn:hover mat-icon {
+  color: #000000 !important;
+}
+
+/* Asegurar texto negro con máxima especificidad */
+[data-theme="dark"] .nueva-tarea-btn span,
+[data-theme="dark"] .nueva-tarea-btn .mdc-button__label,
+[data-theme="dark"] .nueva-tarea-btn .mat-button-wrapper {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .nueva-tarea-btn:hover span,
+[data-theme="dark"] .nueva-tarea-btn:hover .mdc-button__label,
+[data-theme="dark"] .nueva-tarea-btn:hover .mat-button-wrapper {
+  color: #000000 !important;
+}

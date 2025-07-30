@@ -1,0 +1,39 @@
+<div class="lista-tareas-container">
+  <!-- Estado de carga -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Cargando tareas...</p>
+  </div>
+
+  <!-- Estado de error -->
+  <div *ngIf="error && !loading" class="error-container">
+    <mat-icon color="warn">error</mat-icon>
+    <p>{{ error }}</p>
+    <button mat-raised-button color="primary" (click)="cargarTareas()">
+      <mat-icon>refresh</mat-icon>
+      Reintentar
+    </button>
+  </div>
+
+  <!-- Lista de tareas -->
+  <div *ngIf="!loading && !error" class="tareas-grid">
+    <!-- Mensaje cuando no hay tareas -->
+    <div *ngIf="tareas.length === 0" class="empty-state">
+      <mat-icon class="empty-icon">assignment</mat-icon>
+      <h3>No hay tareas disponibles</h3>
+      <p>¡Crea tu primera tarea para comenzar!</p>
+    </div>
+
+    <!-- Tarjetas de tareas -->
+    <app-tarea-card
+      *ngFor="let tarea of tareas"
+      [tarea]="tarea"
+      [isEditing]="isEditing(tarea.id)"
+      (toggleEstado)="onToggleEstado($event)"
+      (eliminar)="onEliminarTarea($event)"
+      (editar)="onEditarTarea($event)"
+      (guardarCambios)="onGuardarCambios($event)"
+      (cancelarEdicion)="onCancelarEdicion()">
+    </app-tarea-card>
+  </div>
+</div>

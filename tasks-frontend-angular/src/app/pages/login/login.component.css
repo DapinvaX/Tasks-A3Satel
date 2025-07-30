@@ -1,0 +1,175 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--body-background);
+  padding: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  background: var(--card-background) !important;
+  border: none !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+  transition: all 0.3s ease;
+  position: relative;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Asegurar que el card mantenga su forma en todos los temas */
+.login-card,
+[data-theme="light"] .login-card {
+  background: var(--card-background) !important;
+  border: none !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="dark"] .login-card {
+  background: var(--card-background) !important;
+  border: none !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+.login-card mat-card-header {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-card mat-card-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary) !important;
+  margin-bottom: 8px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.login-card mat-card-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary) !important;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  border-radius: 8px;
+  color: var(--button-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #5a6fd8;
+}
+
+mat-form-field {
+  font-size: 14px;
+}
+
+.forgot-password-link {
+  text-align: center;
+  margin-top: 10px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Estilos específicos para tema oscuro */
+[data-theme="dark"] .login-card mat-card-title {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .login-card mat-card-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .register-link {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .forgot-password-link {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .login-button {
+  color: var(--button-text) !important;
+}
+
+/* Estilos para placeholders en tema oscuro */
+[data-theme="dark"] .mat-mdc-form-field input::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input::-webkit-input-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input::-moz-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input:-ms-input-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .mat-mdc-form-field input:-moz-placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.8 !important;
+}
+
+/* Estilos para los snackbars */
+::ng-deep .success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-card {
+    padding: 20px;
+  }
+}

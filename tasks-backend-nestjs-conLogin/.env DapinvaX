@@ -1,0 +1,27 @@
+PORT = 4000
+
+# Database connection settings
+DB_HOST = localhost
+DB_PORT = 3306
+DB_USER = dapinvax
+DB_PASSWORD = C001D201E261e
+DB_NAME = tasks_db
+
+# Prisma database URL
+DATABASE_URL="mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
+
+# JWT secret
+JWT_SECRET = 
+JWT_EXPIRATION = 3600  # in seconds
+
+# Logging settings
+LOG_LEVEL = info
+
+# CORS settings
+CORS_ENABLED = true
+CORS_ORIGIN = http://localhost:4000 || http://localhost:3000
+
+
+
+# This was inserted by `prisma init`:
+[object Promise]

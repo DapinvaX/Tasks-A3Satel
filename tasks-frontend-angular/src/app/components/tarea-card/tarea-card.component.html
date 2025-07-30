@@ -1,0 +1,137 @@
+<mat-card
+  class="tarea-card"
+  [class.completada]="tarea.completada">
+
+  <mat-card-header>
+    <!-- Modo visualización -->
+    <div *ngIf="!isEditing" class="header-view-mode">
+      <mat-card-title class="task-title">{{ tarea.titulo }}</mat-card-title>
+      <!-- Chip de estado debajo del título -->
+      <div class="status-chip-container">
+        <mat-chip
+          [class.completada-chip]="tarea.completada"
+          [class.pendiente-chip]="!tarea.completada">
+          {{ tarea.completada ? 'Completada' : 'Pendiente' }}
+        </mat-chip>
+      </div>
+    </div>
+
+    <!-- Modo edición -->
+    <div *ngIf="isEditing" class="header-edit-mode" [formGroup]="editForm!">
+      <mat-form-field appearance="outline" class="edit-title-field">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" placeholder="Título de la tarea">
+        <mat-error *ngIf="editForm?.get('titulo')?.hasError('required')">
+          El título es obligatorio
+        </mat-error>
+        <mat-error *ngIf="editForm?.get('titulo')?.hasError('minlength')">
+          Mínimo 3 caracteres
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Modo visualización -->
+    <div *ngIf="!isEditing">
+      <p *ngIf="tarea.descripcion" class="descripcion">{{ tarea.descripcion }}</p>
+
+      <div class="fechas-container" *ngIf="tarea.fecha_creacion || tarea.fecha_fin">
+        <div *ngIf="tarea.fecha_creacion" class="fecha-item">
+          <mat-icon>calendar_today</mat-icon>
+          <span>Creada: {{ formatearFecha(tarea.fecha_creacion) }}</span>
+        </div>
+        <div *ngIf="tarea.fecha_fin" class="fecha-item">
+          <mat-icon>event</mat-icon>
+          <span>Vence: {{ formatearFecha(tarea.fecha_fin) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modo edición -->
+    <div *ngIf="isEditing" class="edit-form" [formGroup]="editForm!">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea
+          matInput
+          formControlName="descripcion"
+          placeholder="Descripción de la tarea"
+          rows="3">
+        </textarea>
+        <mat-error *ngIf="editForm?.get('descripcion')?.hasError('maxlength')">
+          Máximo 500 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha límite</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="fecha_fin"
+          placeholder="Selecciona una fecha">
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>event</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="card-actions-footer">
+    <!-- Checkbox para completar tarea - solo en modo visualización -->
+    <div class="checkbox-container" *ngIf="!isEditing">
+      <mat-checkbox
+        [checked]="tarea.completada"
+        (change)="onToggleEstado()"
+        class="completar-checkbox">
+        Marcar como completada
+      </mat-checkbox>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+      <!-- Modo visualización -->
+      <ng-container *ngIf="!isEditing">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="onEditar()"
+          class="action-button edit-button"
+          matTooltip="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="onEliminar()"
+          class="action-button delete-button"
+          matTooltip="Eliminar">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+
+      <!-- Modo edición -->
+      <ng-container *ngIf="isEditing">
+        <button
+          mat-button
+          (click)="onCancelarEdicion()"
+          class="action-button">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onGuardarCambios()"
+          [disabled]="editForm?.invalid"
+          class="action-button">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </ng-container>
+    </div>
+  </mat-card-actions>
+</mat-card>
