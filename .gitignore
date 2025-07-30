@@ -1,5 +1,6 @@
 #README.md
-README.md
+./tasks-backend-nestjs-conLogin/README.md
+./tasks-frontend-angular/README.md
 
 #Generador de env
 generate-env.js
