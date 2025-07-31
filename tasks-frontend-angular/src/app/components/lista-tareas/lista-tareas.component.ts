@@ -85,17 +85,25 @@ export class ListaTareasComponent implements OnInit {
 
   onGuardarCambios(tareaActualizada: Tarea) {
     if (tareaActualizada.id) {
-      this.tareasService.actualizarTarea(tareaActualizada.id, tareaActualizada).subscribe({
-        next: () => {
-          const index = this.tareas.findIndex(t => t.id === tareaActualizada.id);
-          if (index !== -1) {
-            this.tareas[index] = tareaActualizada;
-          }
-          this.editingTareaId = null;
-        },
-        error: (error) => {
-          console.error('Error al actualizar tarea:', error);
+    // Solo los campos válidos para el backend
+    const datosParaActualizar = {
+      titulo: tareaActualizada.titulo,
+      descripcion: tareaActualizada.descripcion,
+      fecha_fin: tareaActualizada.fecha_fin,
+      completada: tareaActualizada.completada
+    };
+
+    this.tareasService.actualizarTarea(tareaActualizada.id, datosParaActualizar).subscribe({
+      next: () => {
+        const index = this.tareas.findIndex(t => t.id === tareaActualizada.id);
+        if (index !== -1) {
+          this.tareas[index] = { ...this.tareas[index], ...datosParaActualizar };
         }
+        this.editingTareaId = null;
+      },
+      error: (error) => {
+        console.error('Error al actualizar tarea:', error,'Intentalo nuevamente.');
+       }
       });
     }
   }
