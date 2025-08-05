@@ -46,32 +46,32 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- Campo fecha fin -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Fecha límite (opcional)</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            formControlName="fecha_fin"
-            aria-label="Fecha límite de la tarea">
-          <mat-datepicker-toggle matIconSuffix [for]="picker">
-            <mat-icon matDatepickerToggleIcon>event</mat-icon>
-          </mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-hint>Fecha para completar la tarea</mat-hint>
-        </mat-form-field>
+        <!-- Grupo de fecha límite -->
+        <div class="fecha-limite-grupo">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Fecha límite (opcional)</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="fecha_fin"
+              aria-label="Fecha límite de la tarea">
+            <mat-datepicker-toggle matIconSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>event</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint>Fecha para completar la tarea</mat-hint>
+          </mat-form-field>
+
+          <!-- Checkbox "Sin fecha límite" -->
+          <div class="checkbox-container">
+            <mat-checkbox formControlName="sin_fecha_limite">
+              Sin fecha límite
+            </mat-checkbox>
+          </div>
+        </div>
 
         <!-- Botones dentro del contenido -->
         <div class="form-buttons">
-          <button
-            mat-button
-            type="button"
-            (click)="onCancel()"
-            [disabled]="isSubmitting">
-            <mat-icon>cancel</mat-icon>
-            Cancelar
-          </button>
-
           <button
             mat-raised-button
             color="primary"
@@ -80,6 +80,15 @@
             [disabled]="tareaForm.invalid || isSubmitting">
             <mat-icon>{{ isSubmitting ? 'hourglass_empty' : 'save' }}</mat-icon>
             {{ isSubmitting ? 'Guardando...' : 'Crear Tarea' }}
+          </button>
+
+          <button
+            mat-button
+            type="button"
+            (click)="onCancel()"
+            [disabled]="isSubmitting">
+            <mat-icon>cancel</mat-icon>
+            Cancelar
           </button>
         </div>
       </form>

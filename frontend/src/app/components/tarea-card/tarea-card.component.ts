@@ -75,7 +75,18 @@ export class TareaCardComponent implements OnInit, OnChanges {
       fecha_fin: [
         this.tarea.fecha_fin ? new Date(this.tarea.fecha_fin) : null
       ],
-      completada: [this.tarea.completada || false]
+      completada: [this.tarea.completada || false],
+      sin_fecha_limite: [!this.tarea.fecha_fin]
+    });
+
+    // Suscribirse a cambios en el checkbox "Sin fecha límite"
+    this.editForm.get('sin_fecha_limite')?.valueChanges.subscribe(sinFecha => {
+      if (sinFecha) {
+        this.editForm?.get('fecha_fin')?.setValue(null);
+        this.editForm?.get('fecha_fin')?.disable();
+      } else {
+        this.editForm?.get('fecha_fin')?.enable();
+      }
     });
   }
 
@@ -109,9 +120,13 @@ export class TareaCardComponent implements OnInit, OnChanges {
   onGuardarCambios(): void {
     if (!this.editForm?.valid) return;
 
+    const formValue = this.editForm.value;
     const tareaActualizada: Tarea = {
       ...this.tarea,
-      ...this.editForm.value
+      titulo: formValue.titulo,
+      descripcion: formValue.descripcion,
+      fecha_fin: formValue.sin_fecha_limite ? null : formValue.fecha_fin,
+      completada: formValue.completada
     };
 
     this.guardarCambios.emit(tareaActualizada);

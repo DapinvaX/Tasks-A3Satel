@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TareasService } from '../../services/tareas.service';
 
 @Component({
@@ -24,7 +25,8 @@ import { TareasService } from '../../services/tareas.service';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   templateUrl: './form-tarea.component.html',
   styleUrl: './form-tarea.component.css',
@@ -43,7 +45,18 @@ export class FormTareaComponent {
     this.tareaForm = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       descripcion: ['', [Validators.maxLength(500)]],
-      fecha_fin: ['']
+      fecha_fin: [''],
+      sin_fecha_limite: [false]
+    });
+
+    // Suscribirse a cambios en el checkbox "Sin fecha límite"
+    this.tareaForm.get('sin_fecha_limite')?.valueChanges.subscribe(sinFecha => {
+      if (sinFecha) {
+        this.tareaForm.get('fecha_fin')?.setValue('');
+        this.tareaForm.get('fecha_fin')?.disable();
+      } else {
+        this.tareaForm.get('fecha_fin')?.enable();
+      }
     });
   }
 
@@ -51,8 +64,12 @@ export class FormTareaComponent {
     if (this.tareaForm.valid && !this.isSubmitting) {
       this.isSubmitting = true;
 
+      // Preparar datos para envío, excluyendo sin_fecha_limite
+      const formValue = this.tareaForm.value;
       const nuevaTarea = {
-        ...this.tareaForm.value,
+        titulo: formValue.titulo,
+        descripcion: formValue.descripcion,
+        fecha_fin: formValue.sin_fecha_limite ? null : formValue.fecha_fin,
         completada: false
       };
 
@@ -86,4 +103,5 @@ export class FormTareaComponent {
   get titulo() { return this.tareaForm.get('titulo'); }
   get descripcion() { return this.tareaForm.get('descripcion'); }
   get fecha_fin() { return this.tareaForm.get('fecha_fin'); }
+  get sin_fecha_limite() { return this.tareaForm.get('sin_fecha_limite'); }
 }

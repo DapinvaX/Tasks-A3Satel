@@ -110,6 +110,80 @@
   cursor: not-allowed;
 }
 
+/* ===== GRUPO DE FECHA LÍMITE ===== */
+/* El grupo usa el gap del tarea-form para el espaciado consistente */
+
+.fecha-limite-grupo .checkbox-container {
+  margin: 8px 0 0 0;
+  padding: 4px 0;
+}
+
+/* ===== CHECKBOX CONTAINER ===== */
+.checkbox-container {
+  margin: 8px 0 16px 0;
+  padding: 4px 0;
+}
+
+.checkbox-container mat-checkbox {
+  color: var(--text-primary);
+}
+
+.checkbox-container mat-checkbox ::ng-deep .mdc-form-field {
+  align-items: center !important;
+}
+
+.checkbox-container mat-checkbox ::ng-deep .mdc-checkbox {
+  padding: 0 !important;
+  margin: 0 8px 0 0 !important;
+  top: 0 !important;
+  vertical-align: middle !important;
+}
+
+.checkbox-container mat-checkbox ::ng-deep .mdc-checkbox .mdc-checkbox__background {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Estilos específicos para modo claro */
+[data-theme="light"] .checkbox-container mat-checkbox {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .checkbox-container mat-checkbox ::ng-deep .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+  border-color: #757575 !important;
+}
+
+/* Estilos específicos para modo oscuro */
+[data-theme="dark"] .checkbox-container mat-checkbox {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .checkbox-container mat-checkbox ::ng-deep .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+  border-color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .checkbox-container mat-checkbox .mdc-label {
+  color: #e0e0e0 !important;
+}
+
+/* Efecto hover para el cuadrado del checkbox en modo oscuro */
+[data-theme="dark"] .checkbox-container mat-checkbox:hover ::ng-deep .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+  border-color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Estado checked en modo oscuro */
+[data-theme="dark"] .checkbox-container mat-checkbox ::ng-deep .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme="dark"] .checkbox-container mat-checkbox ::ng-deep .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background .mdc-checkbox__checkmark {
+  color: #2c2c34 !important;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .form-container {

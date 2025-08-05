@@ -45,6 +45,10 @@
           <mat-icon>event</mat-icon>
           <span>Vence: {{ formatearFecha(tarea.fecha_fin) }}</span>
         </div>
+        <div *ngIf="!tarea.fecha_fin" class="fecha-item sin-fecha">
+          <mat-icon>event_busy</mat-icon>
+          <span>Sin fecha límite</span>
+        </div>
       </div>
     </div>
 
@@ -63,18 +67,28 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Fecha límite</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          formControlName="fecha_fin"
-          placeholder="Selecciona una fecha">
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon>event</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      <!-- Grupo de fecha límite -->
+      <div class="fecha-limite-grupo">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Fecha límite</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="fecha_fin"
+            >
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Checkbox "Sin fecha límite" -->
+        <div class="checkbox-container">
+          <mat-checkbox formControlName="sin_fecha_limite">
+            Sin fecha límite
+          </mat-checkbox>
+        </div>
+      </div>
     </div>
   </mat-card-content>
 
