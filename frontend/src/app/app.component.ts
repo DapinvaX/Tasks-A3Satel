@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { AuthService } from './services/auth.service';
+import { HelpBotComponent } from './components/help-bot/help-bot.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, HelpBotComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

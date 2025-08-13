@@ -1,0 +1,29 @@
+<div class="help-bot" [class.open]="isOpen()">
+  <button class="fab" mat-fab color="primary" (click)="toggle()" aria-label="Abrir ayuda">
+    <mat-icon>{{ isOpen() ? 'close' : 'help' }}</mat-icon>
+  </button>
+
+  <div class="panel">
+    <div class="header">
+      <mat-icon>smart_toy</mat-icon>
+      <span>Ayuda</span>
+    </div>
+
+    <div class="messages">
+      <div *ngFor="let m of messages()" class="msg" [class.user]="m.from==='user'" [class.bot]="m.from==='bot'">
+        <div class="bubble">{{ m.text }}</div>
+      </div>
+    </div>
+
+  <div class="suggestions" *ngIf="suggestions.length">
+      <button mat-stroked-button color="primary" *ngFor="let s of suggestions" (click)="send(s)">{{ s }}</button>
+    </div>
+
+    <div class="composer">
+      <input matInput placeholder="Escribe tu pregunta..." [ngModel]="input()" (ngModelChange)="input.set($event)" (keyup.enter)="send()" />
+      <button mat-icon-button color="primary" (click)="send()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
