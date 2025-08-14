@@ -14,7 +14,7 @@ Una aplicación completa de gestión de tareas desarrollada con **Angular** (fro
 - **Base de Datos**: MySQL 8.0 con esquema de usuarios y tareas
 - **Autenticación**: JWT (JSON Web Tokens) + Passport.js
 - **Seguridad**: Guards, Interceptors, Hash de contraseñas
-- **Testing**: Jest (Backend) + Jasmine/Karma (Frontend)
+
 
 ---
 
@@ -180,6 +180,50 @@ DELETE /tareas/:id      # Eliminar tarea (solo del usuario)
 - **Tema dinámico**: Switch claro/oscuro con persistencia
 - **Responsive**: Adaptable a dispositivos móviles
 - **Estado reactivo**: Actualización automática según autenticación
+
+---
+
+## 🧭 Navbar (documentación)
+
+Componente de navegación moderno con búsqueda, notificaciones, cambio de tema y menú de usuario.
+
+### ✨ Funcionalidades principales
+- Navegación: Inicio, Nueva Tarea, etc., con indicador de ruta activa y diseño responsive.
+- Búsqueda expandible: barra que se expande al hacer clic con limpiar y Enter para buscar.
+- Notificaciones: badge con contador que se oculta si no hay notificaciones.
+- Cambio de tema: alterna claro/oscuro, persistido en localStorage y respeta preferencia del sistema.
+- Menú de usuario: opciones de perfil, configuración, ayuda y logout.
+
+### Uso
+Importa el componente y úsalo en tu plantilla raíz:
+
+```typescript
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+@Component({
+  imports: [NavbarComponent],
+  // ...
+})
+export class AppComponent {}
+```
+
+```html
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+```
+
+### Personalización
+- Rutas: editar `navbar.component.html` con tus `routerLink`.
+- Métodos disponibles: `toggleDarkTheme()`, `toggleSearch()`, `onSearch()`, `clearSearch()`, `openProfile()`, `openSettings()`, `openHelp()`, `logout()`.
+- Propiedades: `isDarkTheme`, `isSearchExpanded`, `searchQuery`, `notificationCount`.
+
+### Dependencias
+- Angular Material: `MatToolbarModule`, `MatIconModule`, `MatButtonModule`, `MatMenuModule`, `MatFormFieldModule`, `MatInputModule`, `MatBadgeModule`, `MatDividerModule`.
+- Angular: `RouterModule`, `FormsModule`, `CommonModule`.
+
+### Notas y próximas mejoras
+- Sticky top con estilos modernos y animaciones suaves.
+- Sugerencias: integrar notificaciones en tiempo real, búsqueda con autocompletado y más opciones de tema.
 
 ##### 5. **Home Page Component (Protegido)**
 - **Dashboard personalizado**: Saludo con nombre de usuario
@@ -585,32 +629,21 @@ src/app/
 - **Token Management**: Verificación de expiración
 - **Secure Storage**: localStorage con validaciones
 
-### 🧪 Testing
+### � HelpBot (Asistente flotante)
 
-#### **Ejecutar Tests Backend**
-```bash
-cd tasks-backend-nestjs
+Asistente de ayuda accesible en toda la app mediante un botón flotante en la esquina inferior izquierda.
 
-# Tests unitarios
-npm run test
-
-# Tests con cobertura
-npm run test:cov
-
-# Tests end-to-end
-npm run test:e2e
-```
-
-#### **Ejecutar Tests Frontend**
-```bash
-cd tasks-frontend-angular
-
-# Tests unitarios
-ng test
-
-# Tests end-to-end
-ng e2e
-```
+- Sugerencias iniciales: muestra 3 preguntas frecuentes como botones.
+- Follow-ups contextuales: tras cada respuesta del bot, se muestran automáticamente sugerencias relacionadas.
+- Comportamiento del input:
+  - Si el cuadro de texto tiene contenido, no se muestran sugerencias.
+  - Si está vacío y hay una última pregunta, se muestran los follow-ups.
+  - Si está vacío y no hay contexto previo, se muestran las sugerencias iniciales.
+  - Al borrar todo el texto, reaparecen las sugerencias según el contexto.
+- Interacción: al hacer clic en una sugerencia o follow-up, se envía la consulta.
+- Animaciones: apertura/cierre suave del panel, “pensando” (tres puntos) y aparición de burbujas de chat.
+- Autoscroll: se desplaza automáticamente al último mensaje.
+- Nota: la FAQ de cambio de tema existe pero no aparece en las sugerencias iniciales.
 
 ### 📦 Despliegue
 
@@ -743,55 +776,7 @@ cp tasks-frontend-angular/.env.example tasks-frontend-angular/.env
 
 ---
 
-## 🧪 Testing y Calidad de Código
-
-### 📊 **Cobertura de Tests Implementada**
-
-#### **Backend (NestJS)**
-```bash
-# Ejecutar todos los tests
-npm run test
-
-# Tests con cobertura
-npm run test:cov
-
-# Tests end-to-end
-npm run test:e2e
-
-# Tests en modo watch
-npm run test:watch
-```
-
-**Tests Implementados:**
-- ✅ **AuthService**: 15+ tests (registro, login, recuperación contraseña)
-- ✅ **TareasService**: 12+ tests (CRUD con autorización)
-- ✅ **AuthController**: 10+ tests (endpoints de autenticación)
-- ✅ **TareasController**: 8+ tests (endpoints de tareas)
-- ✅ **Guards**: Tests de autorización JWT y Local
-- ✅ **Integration Tests**: Flujo completo de autenticación
-
-#### **Frontend (Angular)**
-```bash
-# Tests unitarios
-ng test
-
-# Tests con cobertura
-ng test --code-coverage
-
-# Tests end-to-end
-ng e2e
-```
-
-**Tests Implementados:**
-- ✅ **AuthService**: 20+ tests (todos los métodos HTTP)
-- ✅ **TareasService**: 10+ tests (CRUD con autenticación)
-- ✅ **Components**: Tests de UI y lógica de negocio
-- ✅ **Guards**: Tests de protección de rutas
-- ✅ **Integration Tests**: Flujos completos de usuario
-
----
-
-### 👤 **Gestión de Usuarios**
+###  **Gestión de Usuarios**
 1. **Registro completo**: Usuario se registra con todos los datos requeridos
 2. **Login flexible**: Email o username + contraseña
 3. **Recuperación segura**: Proceso de 3 pasos con preguntas de seguridad
@@ -820,248 +805,8 @@ ng e2e
 
 ---
 
-## 🧪 Tests Unitarios - Sistema de Testing Completo
 
-### 📊 Estado General
-
-Se han implementado tests unitarios completos para ambos proyectos (Backend NestJS y Frontend Angular) con cobertura de las funcionalidades principales de autenticación y gestión de tareas.
-
-### 🎯 Backend (NestJS) - Tests Implementados
-
-#### ✅ **Tests de Servicios**
-
-##### 1. **AuthService Tests** (`src/auth/auth.service.spec.ts`)
-- **register()**: Prueba el registro de usuarios, validación de duplicados y hash de contraseñas
-- **validateUser()**: Verificación de credenciales y comparación de contraseñas
-- **login()**: Generación de tokens JWT y respuesta de autenticación
-- **forgotPassword()**: Búsqueda de usuarios y retorno de preguntas de seguridad
-- **verifySecurityAnswer()**: Validación de respuestas de seguridad
-- **resetPassword()**: Actualización segura de contraseñas
-
-##### 2. **TareasService Tests** (`src/tareas/tareas.service.spec.ts`)
-- **create()**: Creación de tareas con validación de usuario
-- **findAll()**: Listado de tareas filtrado por usuario
-- **findOne()**: Búsqueda de tarea específica con autorización
-- **update()**: Actualización de tareas con validación de permisos
-- **remove()**: Eliminación de tareas con verificación de propiedad
-
-#### ✅ **Tests de Controladores**
-
-##### 3. **AuthController Tests** (`src/auth/auth.controller.spec.ts`)
-- **register**: Endpoint de registro con manejo de errores
-- **login**: Endpoint de login con validación de credenciales
-- **getProfile**: Obtención de perfil de usuario autenticado
-- **forgotPassword**: Recuperación de contraseña
-- **verifySecurityAnswer**: Verificación de respuestas de seguridad
-- **resetPassword**: Restablecimiento de contraseña
-
-##### 4. **TareasController Tests** (`src/tareas/tareas.controller.spec.ts`)
-- **create**: Creación de tareas con autenticación
-- **findAll**: Listado de tareas del usuario autenticado
-- **findOne**: Obtención de tarea específica
-- **update**: Actualización de tareas
-- **remove**: Eliminación de tareas
-
-#### 📊 **Resultados Backend**
-- **Tests Pasando**: 29/36 (80.5%)
-- **Tests Fallando**: 7/36 (principalmente por tipado de Prisma mocks)
-- **Funcionalidad Core**: ✅ Funcionando correctamente
-
-### 🎯 Frontend (Angular) - Tests Implementados
-
-#### ✅ **Tests de Servicios**
-
-##### 1. **AuthService Tests** (`src/app/services/auth.service.spec.ts`)
-- **register()**: Registro de usuarios con almacenamiento de tokens
-- **login()**: Autenticación con manejo de localStorage
-- **logout()**: Limpieza de datos de autenticación
-- **getToken()**: Recuperación de tokens del storage
-- **isAuthenticated()**: Verificación de estado de autenticación
-- **getCurrentUser()**: Obtención de usuario actual
-- **forgotPassword()**: Solicitud de recuperación de contraseña
-- **verifySecurityAnswer()**: Verificación de respuestas de seguridad
-- **resetPassword()**: Restablecimiento de contraseña
-
-##### 2. **TareasService Tests** (`src/app/services/tareas.service.spec.ts`)
-- **getTareas()**: Obtención de lista de tareas
-- **getTarea()**: Obtención de tarea específica
-- **crearTarea()**: Creación de nuevas tareas
-- **actualizarTarea()**: Actualización de tareas existentes
-- **eliminarTarea()**: Eliminación de tareas
-- **cambiarEstadoTarea()**: Cambio de estado de completado
-
-##### 3. **ThemeService Tests** (`src/app/services/theme.service.spec.ts`)
-- **toggleTheme()**: Alternancia entre tema claro y oscuro
-- **setDarkTheme()**: Establecimiento de tema con persistencia
-- **applyTheme()**: Aplicación de atributos de tema al DOM
-- **Initialization**: Carga de tema guardado al inicializar
-
-#### ✅ **Tests de Componentes**
-
-##### 4. **LoginComponent Tests** (`src/app/pages/login/login.component.spec.ts`)
-- **Form Validation**: Validación de campos requeridos y formatos
-- **onSubmit()**: Proceso de login con manejo de errores
-- **togglePasswordVisibility()**: Funcionalidad de mostrar/ocultar contraseña
-- **onForgotPassword()**: Navegación a recuperación de contraseña
-- **getErrorMessage()**: Generación de mensajes de error apropiados
-
-##### 5. **Integration Tests** (`src/app/tests/integration.spec.ts`)
-- **Authentication Flow**: Flujo completo de autenticación
-- **Tasks Management Flow**: Gestión completa de tareas
-- **Authentication Guard**: Verificación de guards de autenticación
-- **Error Handling**: Manejo de errores en toda la aplicación
-
-#### 📊 **Resultados Frontend**
-- **Tests Pasando**: 41/81 (50.6%)
-- **Tests Fallando**: 40/81 (principalmente por configuración de TestBed)
-- **Servicios Core**: ✅ Funcionando correctamente
-
-### 🚀 **Tests Que Funcionan Correctamente**
-
-#### **Backend (NestJS)**:
-- ✅ **AppController**: Funcionalidad básica
-- ✅ **AuthController**: Todos los endpoints
-- ✅ **TareasController**: CRUD completo
-- ⚠️ **AuthService**: 80% funcional (issues menores con mocks)
-- ⚠️ **TareasService**: 70% funcional (mensajes de error específicos)
-
-#### **Frontend (Angular)**:
-- ✅ **AuthService**: Métodos HTTP core
-- ✅ **TareasService**: CRUD y cambio de estados
-- ✅ **ThemeService**: Funcionalidad completa
-- ⚠️ **LoginComponent**: Lógica funcional (issues con TestBed)
-- ⚠️ **Integration Tests**: Flujos principales (configuración pendiente)
-
-### 📈 **Cobertura de Funcionalidades**
-
-#### ✅ **Completamente Testadas**:
-- Autenticación (login, registro, logout)
-- Gestión de tareas (CRUD completo)
-- Autorización y permisos
-- Manejo de temas
-- Persistencia de datos
-- Validación de formularios
-
-#### ⚠️ **Parcialmente Testadas**:
-- Componentes UI (problemas de configuración)
-- Guards de Angular
-- Interceptors HTTP
-
-### 🔧 **Mocking y Test Utilities**
-
-#### **Backend**
-- **Prisma**: Mocked para tests unitarios aislados
-- **JWT**: Mocked para generación de tokens
-- **bcrypt**: Mocked para hash de contraseñas
-
-#### **Frontend**
-- **HttpClient**: Mocked con HttpTestingController
-- **Router**: Mocked para navegación
-- **LocalStorage**: Mocked para persistencia
-- **Angular Material**: Mocked para componentes UI
-
-### 📋 **Coverage Esperado**
-
-#### **Backend**
-- **Servicios**: >90% de cobertura en lógica de negocio
-- **Controladores**: >85% de cobertura en endpoints
-- **Guards y Middlewares**: >95% de cobertura
-
-#### **Frontend**
-- **Servicios**: >90% de cobertura en métodos HTTP
-- **Componentes**: >80% de cobertura en lógica de UI
-- **Guards**: >95% de cobertura en lógica de autorización
-
-### ⭐ **Mejores Prácticas Implementadas**
-
-1. **Aislamiento**: Cada test es independiente y no afecta a otros
-2. **Mocking**: Dependencias externas están mockeadas apropiadamente
-3. **Cobertura**: Tests cubren casos de éxito, error y edge cases
-4. **Nomenclatura**: Nombres descriptivos siguiendo patrón "should... when..."
-5. **Organización**: Tests agrupados por funcionalidad
-6. **Cleanup**: Limpieza apropiada después de cada test
-
-### 🎯 **Valor Entregado**
-
-1. **Base Sólida**: Framework completo de testing implementado
-2. **Cobertura Core**: Todas las funcionalidades principales están testadas
-3. **Detección de Bugs**: Los tests han identificado varios issues potenciales
-4. **Documentación**: Tests sirven como documentación viva del código
-5. **CI/CD Ready**: Scripts preparados para integración continua
-
-### 🔧 **Comandos de Ejecución**
-
-#### **Backend (NestJS)**
-```bash
-cd tasks-backend-nestjs
-
-# Ejecutar todos los tests
-npm test
-
-# Ejecutar tests en modo watch
-npm run test:watch
-
-# Ejecutar tests con coverage
-npm run test:cov
-
-# Ejecutar tests e2e
-npm run test:e2e
-
-# Scripts adicionales
-npm run test:unit          # Solo tests unitarios
-npm run test:integration   # Solo tests de integración
-npm run test:coverage      # Coverage con reporte
-npm run test:ci            # Para CI/CD
-```
-
-#### **Frontend (Angular)**
-```bash
-cd tasks-frontend-angular
-
-# Ejecutar todos los tests
-ng test
-
-# Ejecutar tests en modo headless (para CI/CD)
-ng test --watch=false --browsers=ChromeHeadless
-
-# Ejecutar tests con coverage
-ng test --code-coverage
-
-# Ejecutar tests específicos
-ng test --include="**/auth.service.spec.ts"
-
-# Scripts adicionales
-npm run test:unit          # Tests unitarios
-npm run test:ci            # Para CI/CD con coverage
-npm run test:watch         # Modo watch
-```
-
-### 📋 **Scripts de Package.json Agregados**
-
-#### **Backend:**
-```json
-{
-  "scripts": {
-    "test:unit": "jest --testPathPattern=spec.ts",
-    "test:integration": "jest --testPathPattern=e2e-spec.ts",
-    "test:coverage": "jest --coverage --coverageReporters=text-lcov",
-    "test:ci": "jest --ci --coverage --watchAll=false"
-  }
-}
-```
-
-#### **Frontend:**
-```json
-{
-  "scripts": {
-    "test:unit": "ng test --include='**/*.spec.ts'",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
-    "test:watch": "ng test --watch=true"
-  }
-}
-```
-
-## 📁 Estructura Completa del Proyecto
+##  Estructura Completa del Proyecto
 
 ```
 tasks-conLogin/
@@ -1092,14 +837,11 @@ tasks-conLogin/
             ├── 📂 services/ (auth, tareas, theme)
             ├── 📂 guards/ (auth, no-auth)
             ├── 📂 interceptors/ (auth)
-            ├── 📂 models/ (interfaces completas)
-            └── 📂 tests/ (integration tests)
+            └── 📂 models/ (interfaces completas)
 ```
 
 ---
 
 *Desarrollado usando Angular + NestJS + MySQL + JWT Authentication*
 
-**Características destacadas**: Autenticación completa, gestión de usuarios, protección de rutas, testing exhaustivo con documentación integrada, interfaz responsive, y arquitectura escalable.
-
-> 📝 **Nota de Documentación**: Los tests unitarios y su documentación completa están integrados en este README en la sección "Tests Unitarios - Sistema de Testing Completo" para una mejor organización y mantenimiento.
+**Características destacadas**: Autenticación completa, gestión de usuarios, protección de rutas, interfaz responsive y arquitectura escalable.

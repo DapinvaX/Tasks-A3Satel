@@ -29,6 +29,15 @@ export class HelpBotService {
       ].join('\n')
     },
     {
+      q: '¿Cómo cambio entre tema claro y oscuro?',
+      keywords: ['tema', 'oscuro', 'claro', 'dark', 'light', 'modo', 'apariencia', 'navbar', 'sol', 'luna'],
+      a: [
+        'Para cambiar de tema (claro/oscuro):',
+        '1) En la barra superior (navbar) pulsa el botón con el icono: sol para tema claro o luna para tema oscuro.',
+        '2) La preferencia se guarda en el navegador (localStorage) y se aplicará automáticamente la próxima vez que entres.'
+      ].join('\n')
+    },
+    {
       q: '¿Cómo edito, completo o elimino una tarea?',
       keywords: ['editar', 'completar', 'eliminar', 'marcar', 'guardar', 'tarea', 'sin fecha límite'],
       a: [
@@ -51,9 +60,14 @@ export class HelpBotService {
     }
   ];
 
-  /** Preguntas sugeridas (máx. 3) */
+  /** Preguntas sugeridas (máx. 3). Excluye la de cambio de tema. */
   getSuggestions(): string[] {
-    return this.faqs.slice(0, 3).map(f => f.q);
+    const excludeTitle = '¿Cómo cambio entre tema claro y oscuro?'.toLowerCase();
+    const excludeKeywords = new Set(['tema','oscuro','claro','dark','light','modo','apariencia','navbar','sol','luna']);
+    return this.faqs
+      .filter(f => f.q.toLowerCase() !== excludeTitle && !f.keywords.some(k => excludeKeywords.has(k.toLowerCase())))
+      .slice(0, 3)
+      .map(f => f.q);
   }
 
   /** Devuelve la mejor respuesta por coincidencia de palabras clave. */
@@ -90,5 +104,46 @@ export class HelpBotService {
     // pequeño bonus si el título de la FAQ aparece
     if (text.includes(item.q.split(' ')[1]?.toLowerCase() || '')) s += 0.5;
     return s;
+  }
+
+  /** Devuelve sugerencias relacionadas con la última pregunta del usuario */
+  suggestFollowUps(query: string): string[] {
+    const q = query.toLowerCase();
+    let best: { item: FaqItem; score: number } | null = null;
+    for (const item of this.faqs) {
+      const score = this.score(item, q);
+      if (!best || score > best.score) best = { item, score };
+    }
+    if (!best) return [];
+
+    switch (best.item.q) {
+      case '¿Cómo creo una tarea?':
+        return [
+          '¿Puedo crear una tarea sin fecha límite?',
+          '¿Qué requisitos tiene el título y la descripción?',
+          '¿Dónde veo mis tareas creadas?'
+        ];
+      case '¿Cómo edito, completo o elimino una tarea?':
+        return [
+          '¿Cómo marcar una tarea como completada?',
+          '¿Puedo quitar la fecha límite al editar?',
+          '¿Cómo elimino una tarea?'
+        ];
+      case '¿Cómo inicio sesión, me registro o recupero la contraseña?':
+        return [
+          '¿Qué hago si mi token expira?',
+          '¿Cómo restablecer la contraseña?',
+          '¿Puedo registrarme con usuario o email?'
+        ];
+      case '¿Cómo cambio entre tema claro y oscuro?':
+        return [
+          '¿Dónde está el botón de tema?',
+          '¿Se guarda mi preferencia de tema?',
+          '¿Puedo cambiar el tema sin iniciar sesión?'
+        ];
+      default:
+        // fallback genérico basado en keywords
+        return best.item.keywords.slice(0, 3).map(k => `Más sobre ${k}`);
+    }
   }
 }

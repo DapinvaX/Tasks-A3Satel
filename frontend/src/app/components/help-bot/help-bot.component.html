@@ -9,18 +9,28 @@
       <span>Ayuda</span>
     </div>
 
-    <div class="messages">
+  <div class="messages" #messagesRef>
       <div *ngFor="let m of messages()" class="msg" [class.user]="m.from==='user'" [class.bot]="m.from==='bot'">
-        <div class="bubble">{{ m.text }}</div>
+        <div class="bubble" [class.thinking]="m.thinking">
+          <ng-container *ngIf="!m.thinking; else thinkingDots">{{ m.text }}</ng-container>
+          <ng-template #thinkingDots>
+            <span></span>
+          </ng-template>
+        </div>
       </div>
     </div>
 
-  <div class="suggestions" *ngIf="suggestions.length">
-      <button mat-stroked-button color="primary" *ngFor="let s of suggestions" (click)="send(s)">{{ s }}</button>
+  <div class="suggestions" *ngIf="(suggestions.length && showSuggestions()) || (showFollowups() && followups().length)">
+      <ng-container *ngIf="showSuggestions(); else followupList">
+        <button mat-stroked-button color="primary" *ngFor="let s of suggestions" (click)="send(s)">{{ s }}</button>
+      </ng-container>
+      <ng-template #followupList>
+        <button mat-stroked-button color="primary" *ngFor="let f of followups()" (click)="pickFollowup(f)">{{ f }}</button>
+      </ng-template>
     </div>
 
     <div class="composer">
-      <input matInput placeholder="Escribe tu pregunta..." [ngModel]="input()" (ngModelChange)="input.set($event)" (keyup.enter)="send()" />
+  <input matInput placeholder="Escribe tu pregunta..." [ngModel]="input()" (ngModelChange)="onInputChange($event)" (focus)="onInputFocus()" (keyup.enter)="send()" />
       <button mat-icon-button color="primary" (click)="send()">
         <mat-icon>send</mat-icon>
       </button>
