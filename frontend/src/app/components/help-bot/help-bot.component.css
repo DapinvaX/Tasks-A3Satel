@@ -18,12 +18,15 @@
 	padding: 0 12px;
 	margin-bottom: 0;
 	border-width: 0;
-		transition: opacity .45s cubic-bezier(0.22, 1, 0.36, 1),
-								transform .45s cubic-bezier(0.22, 1, 0.36, 1),
-								max-height .55s cubic-bezier(0.22, 1, 0.36, 1),
-								padding .45s cubic-bezier(0.22, 1, 0.36, 1),
-								margin .45s cubic-bezier(0.22, 1, 0.36, 1),
-								border-width .45s cubic-bezier(0.22, 1, 0.36, 1);
+	/* Transiciones unificadas (misma duración y easing al abrir/cerrar) */
+	--hb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--hb-dur: .5s;
+	transition: opacity var(--hb-dur) var(--hb-ease),
+	          transform var(--hb-dur) var(--hb-ease),
+	          max-height var(--hb-dur) var(--hb-ease),
+	          padding var(--hb-dur) var(--hb-ease),
+	          margin var(--hb-dur) var(--hb-ease),
+	          border-width var(--hb-dur) var(--hb-ease);
 }
 
 .help-bot.open .panel {
